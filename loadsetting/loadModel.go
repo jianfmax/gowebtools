@@ -16,7 +16,6 @@ import (
 
 // LoadSetting 加载数据的设定
 func LoadSetting(db *gorm.DB, reloadTime time.Duration, inputData []*SectionValueMap, outputData chan SectionValueMap) {
-	log.SetLevel(log.DebugLevel)
 	log.Info("开始进入监听更改情况")
 	reloadAllSetting(db, inputData, outputData)
 	ticker := time.NewTicker(time.Second * reloadTime)

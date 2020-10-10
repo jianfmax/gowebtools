@@ -9,6 +9,7 @@ import (
 )
 
 func TestTmp(t *testing.T) {
+	log.SetLevel(log.DebugLevel)
 	// 加载数据库
 	iniFile, err := ini.Load("../conf.ini")
 	if err != nil {
@@ -28,4 +29,15 @@ func TestTmp(t *testing.T) {
 		log.Println(data.Section)
 		log.Println(data.Value)
 	}
+}
+
+func TestSaveToDB(t *testing.T) {
+	log.SetLevel(log.DebugLevel)
+	iniFile, err := ini.Load("../conf.ini")
+	if err != nil {
+		panic(err)
+	}
+	dataBaseStr, TablePrefix := loadsetting.LoadDatabaseStr(iniFile)
+	loadsetting.LoadDatabase(dataBaseStr, TablePrefix)
+	err = loadsetting.SaveToDb("../conf.ini", loadsetting.GetDB())
 }

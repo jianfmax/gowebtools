@@ -41,6 +41,10 @@ func SaveToDb(fileName string, db *gorm.DB) error {
 
 // SaveOneSetting 保存一个设置
 func SaveOneSetting(data Setting, db *gorm.DB) {
+	tmp := db.Where("`section` = ? and `key` = ?", data.Section, data.Key).First(&Setting{})
+	if tmp.RowsAffected >= 1 {
+		return
+	}
 	result := db.Create(&data)
 	if result.Error != nil {
 		log.Error(result.Error)
