@@ -75,3 +75,15 @@ func SaveToSectionValueMap(fileName string) []*SectionValueMap {
 	}
 	return data
 }
+
+// InitInput 构造一个初始化的输入
+func InitInput(sectionList []string) []*SectionValueMap {
+	data := make([]*SectionValueMap, 0)
+	for _, section := range sectionList {
+		data = append(data, &SectionValueMap{
+			Section: section,
+			Value:   map[string]string{},
+		})
+	}
+	return data
+}
