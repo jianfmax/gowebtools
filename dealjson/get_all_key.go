@@ -1,4 +1,4 @@
-package dealdataforjson
+package dealjson
 
 import (
 	"errors"
