@@ -1,20 +1,11 @@
-/**
-* @Author: majf77
-* @Date: 2020/11/6
-* @Description: TODO
- */
-
-package gowebtools
+package hashlist_test
 
 import (
 	"fmt"
 	"sync"
 	"testing"
+	"time"
 )
-
-func testM() {
-	fmt.Println("hello world")
-}
 
 func TestSyncMap(t *testing.T) {
 	var scene sync.Map
@@ -27,8 +18,14 @@ func TestSyncMap(t *testing.T) {
 	// 根据键删除对应的键值对
 	scene.Delete("london")
 	// 遍历所有sync.Map中的键值对
+	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
 	go scene.Range(func(k, v interface{}) bool {
 		fmt.Println("iterate:", k, v)
+		time.Sleep(2 * time.Second)
+		fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
 		return true
 	})
+	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
+	time.Sleep(20 * time.Second)
+	fmt.Println(time.Now().Format("2006-01-02 15:04:05"))
 }
